@@ -1,15 +1,13 @@
-import RPi.GPIO as GPIO
+import wiringpi2 as wpi
 import dht11
 import time
 import datetime
 
 # initialize GPIO
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.cleanup()
+wpi.wiringPiSetupGpio()
 
-# read data using pin 14
-instance = dht11.DHT11(pin = 14)
+# read data using pin 235, WiringPi GPIO #12
+instance = dht11.DHT11(pin = 235)
 
 while True:
 	result = instance.read()

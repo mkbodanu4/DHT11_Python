@@ -1,6 +1,14 @@
 # DHT11 Python library
 
-This simple class can be used for reading temperature and humidity values from DHT11 sensor on Raspberry Pi.
+This simple class can be used for reading temperature and humidity values from DHT11 sensor on Odroid-C2.
+
+# Requirements
+
+This class require hardkernel's WiringPi2-Python lib https://github.com/hardkernel/WiringPi2-Python
+
+# Pins
+
+Before starting please check correct pin # at http://www.hardkernel.com/main/products/prdt_info.php?g_code=G145457216438&tab_idx=2, this class uses "Export GPIO#"
 
 # Usage
 
@@ -10,16 +18,14 @@ This simple class can be used for reading temperature and humidity values from D
 For example:
 
 ```python
-import RPi.GPIO as GPIO
+import wiringpi2 as wpi
 import dht11
 
 # initialize GPIO
-GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
-GPIO.cleanup()
+wpi.wiringPiSetupGpio()
 
-# read data using pin 14
-instance = dht11.DHT11(pin = 14)
+# read data using pin 235, WiringPi GPIO #12
+instance = dht11.DHT11(pin = 235)
 result = instance.read()
 
 if result.is_valid():
